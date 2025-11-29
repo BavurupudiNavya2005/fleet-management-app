@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
+    <style></style>
 </head>
 <body>
     <h2>Fleet management</h2>
@@ -80,6 +81,14 @@
         function applyFilter(){
             let cat = document.getElementById("filterCategory").value;
             let stat = document.getElementById("filterStatus").value;
+            let filtered = data.filter(item =>{
+                return ( cat === "All" || item.cat === cat) && (stat === " All" || item.status === stat);
+            });
+            showData(filtered);
+        }
+        function clearFilters(){
+            document.getElementById("filterCategory").value = "All";
+            showData(data);
         }
     </script>
 </body>
