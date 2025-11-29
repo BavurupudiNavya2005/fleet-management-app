@@ -3,9 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Admin Dashboard</title>
 </head>
 <body>
-    
+    <h2>Fleet management</h2>
+    <h3>Add Fleet</h3>
+    <input placeholder="Reg No" id="reg"><br><br>
+    <input placeholder="Category(Auto/car/Truck/Bus)" id="category"><br><br>
+    <input placeholder="Driver Name" id="driver"><br><br>
+    <input placeholder="Available / Unavailable" id="status"><br><br>
+    <button onclick="addFleet()">Add Fleet</button>
+
+    <hr>
+    <div id="cards"></div>
+    <script>
+        let data = [];
+        function addFleet() {
+            let reg = document.getElementById("reg").value;
+            let cat = document.getElementById("category").value;
+            let driver = document.getElementById("driver").value;
+            let status = document.getElementById("status").value;
+
+            if ( reg === "" || driver === "" || cat === "" || status === ""){
+                alert("All fields required!")
+            }
+        }
+    </script>
 </body>
 </html>
