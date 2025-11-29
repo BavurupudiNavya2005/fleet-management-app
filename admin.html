@@ -25,8 +25,61 @@
             let status = document.getElementById("status").value;
 
             if ( reg === "" || driver === "" || cat === "" || status === ""){
-                alert("All fields required!")
+                alert("All fields required!");
+                return;
             }
+            data.push({reg, cat, driver, status});
+            showData(data);
+            clearForm();
+        }
+        function clearForm(){
+             document.getElementById("reg").value = "";
+             document.getElementById("driver").value = "";
+        }
+        function showData(arr) {
+            document.getElementById("cards").innerHTML = "";
+            arr.foreach((item,index) => {
+                let div = document.createElement("div");
+                div.className = "card";
+                div.innerHTML = ` 
+                <p><b> Reg:</b> ${item.reg}</p>
+                <p><b>Category:</b>${item.cat}</p>
+                <p><b>driver:</b>${item.driver}</p>
+                <p><b>Status:</b>${item.status}</p>
+                <button onclick = "update Driver(${index})">Update Driver</button>
+                <button onclick = "change status(${index})">Change Status</button>
+                <button onclick = "deleteVehicle(${index})">Delete</button>`;
+                document.getElementById("cards").append(div);
+
+            })
+        }
+
+        function updateDriver(i)  {
+            let newName = promt("Enter new driver name:");
+            if(newName && newName.trim() !== ""){
+                data[i].driver = newName;
+                showData(data);
+            }
+            else{
+                alert("Driver name cannot beempty!")
+            }
+        }
+
+        function changeStatus(i) {
+            data[i].status = (data[i].status === "Available") ? "Unavailable" : "Available";
+            showData(data);
+        }
+
+        function.deleteVehicle(i) {
+            if(confirm("Are you sure to delete?")){
+                data.splice(i,1);
+                showData(data);
+            }
+        }
+
+        function applyFilter(){
+            let cat = document.getElementById("filterCategory").value;
+            let stat = document.getElementById("filterStatus").value;
         }
     </script>
 </body>
